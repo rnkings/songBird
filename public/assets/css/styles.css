@@ -78,7 +78,50 @@ html{
 	font-family: 'Tillana', cursive;
 }
 
+#centerAndSpace{
+	width:100%;
+    text-align: center;
+    margin:0 auto;
+}
 
 
+#searchSpace{
+	margin-bottom:30px;
+}
+
+/*if I don't want the middle part to be purple take out the jumbotron class*/
+.jumbotron {
+   background-color: #7c78a0;
+   color: #fff;
+   width:100%;
+   height:400px;
+   background-size: cover;
+   padding: 0px;
+   margin-top:-10px;
+   margin-bottom: -20px;
+}
+
+/*body{
+	background-color: #7c78a0;
+
+}*/
+
+#topSpace {
+	margin-top: 100px;
+}
+
+
+.btn{
+	background-color: #775557; 
+
+}
+
+.btn:hover, .btn-large:hover {
+	background-color: #cc795b;
+}
+
+.btn:focus, .btn-large:focus, .btn-floating:focus {
+	background-color: #79494a;
+}
 
 
