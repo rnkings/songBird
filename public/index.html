@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="songBird">
 <head>
   <!-- Compiled and minified CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" rel="stylesheet">
@@ -28,16 +28,25 @@
   <h5 class="center shadow">Taking music to new heights</h5>
 </div><!-- Banner End -->
 <!-- A search bar should be here -->
-<section class="jumbotron">
-  <form class="center" id="centerAndSpace">
+<section class="jumbotron" ng-controller="tuneSubmitController">
+  <form name="submit" ng-submit="searchArtist(artist)" class="center" id="centerAndSpace">
     <div id="searchSpace">
-      <input class="" id="topSpace" placeholder=
-      "What tune is stuck in your head?" required="" size="50" type="tune">
-      <button class="btn btn-danger" id="buttonTune" type=
-      "button">Search</button>
+      <input type="search" required placeholder="What tune is stuck in your head?" ng-model="artist" id="topSpace" size="50" type="tune">
+      <button class="btn" ng-click="tuneSubmit()">Search</button>
     </div>
   </form>
 </section>
+<div ng-show="songResults">
+  <div ng-repeat="songResult in songResults">
+    <p>img ng-src="{{songResult.artworkUrl60}}" alt="{{songResult.collectionName}}"/></p>
+    <p>{{songResult.trackName}}</p>
+    <p><a href="{{songResult.previewUrl}}">Preview</a></p>
+  </div>
+</div>
+<div>
+  <p> {{error}} </p>
+  <p>{{ data }}</p>
+</div>
 <!-- footer starts here -->
 <footer class="pageFooter">
   <div class="container" id="footer">
