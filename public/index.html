@@ -35,18 +35,19 @@
       <button class="btn" ng-click="tuneSubmit()">Search</button>
     </div>
   </form>
-</section>
-<div ng-show="songResults">
-  <div ng-repeat="songResult in songResults">
-    <p>img ng-src="{{songResult.artworkUrl60}}" alt="{{songResult.collectionName}}"/></p>
-    <p>{{songResult.trackName}}</p>
-    <p><a href="{{songResult.previewUrl}}">Preview</a></p>
+  <div ng-show="songResults">
+    <div ng-repeat="songResult in songResults">
+      <img ng-src="{{songResult.artworkUrl60}}" alt="{{songResult.collectionName}}"/>
+      <br>
+      <p>{{songResult.trackName}}</p>
+      <p><a href="{{songResult.previewUrl}}">Preview</a></p>
+    </div>
   </div>
-</div>
-<div>
-  <p> {{error}} </p>
+</section>
+<!-- <div>
+  <p> {{errors}} </p>
   <p>{{ data }}</p>
-</div>
+</div> -->
 <!-- footer starts here -->
 <footer class="pageFooter">
   <div class="container" id="footer">

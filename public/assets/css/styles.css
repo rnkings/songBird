@@ -1,7 +1,7 @@
 
 #banner {
 /* This photo was taken by Breno machado on the site https://unsplash.com/search/birds?photo=GBO4_7WymqY*/
-    background:url('../img/songBirdBanner.jpeg');
+    /*background:url('../img/songBirdBanner.jpeg');*/
     max-width:100%;
     min-height: 450px;
     background-size: cover;
@@ -90,7 +90,7 @@ html{
 }
 
 /*if I don't want the middle part to be purple take out the jumbotron class*/
-.jumbotron {
+/*.jumbotron {
    background-color: #7c78a0;
    color: #fff;
    width:100%;
@@ -99,7 +99,7 @@ html{
    padding: 0px;
    margin-top:-10px;
    margin-bottom: -20px;
-}
+}*/
 
 /*body{
 	background-color: #7c78a0;
