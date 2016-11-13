@@ -35,11 +35,21 @@
       <button class="btn" ng-click="tuneSubmit()">Search</button>
     </div>
   </form>
-  <div ng-show="songResults">
-    <div ng-repeat="songResult in songResults">
+  <div ng-show="songResults.length > 0">
+    <button ng-disabled="currentPage == 1" ng-click="previousPage()">Previous Page</button>
+    <ul>
+      <li ng-repeat="number in getPageArray()">
+        <button ng-disabled="number == currentPage" ng-click="changePage(number)">{{number}}</button>
+      </li>
+    </ul>
+    <button ng-disabled="currentPage >= getMaxPage()" ng-click="nextPage()">Next Page</button>
+    <div ng-repeat="songResult in getPageData()">
+      <hr>
       <img ng-src="{{songResult.artworkUrl60}}" alt="{{songResult.collectionName}}"/>
       <br>
-      <p>{{songResult.trackName}}</p>
+      <p>Song Name: {{songResult.trackName}}</p>
+      <p>Artist Name: {{songResult.artistName}}</p>
+      <p>Album Name: {{songResult.collectionName}}</p>
       <audio controls><source ng-src="{{songResult.previewUrl}}" type='audio/mpeg'></audio>
     </div>
   </div>
