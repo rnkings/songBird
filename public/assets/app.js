@@ -2,6 +2,11 @@
 
 var app = angular.module('songBird', []); 
 
+//disables the security that won't allow the audio preview to play because it's from another site
+app.config(function($sceProvider) {
+	$sceProvider.enabled(false);
+});
+
 var tuneSubmitController = function($scope, $http, $log){
 	var onResultsReturned = function(response){
 		$scope.data = response.data;
@@ -23,7 +28,5 @@ var tuneSubmitController = function($scope, $http, $log){
 };
 
 app.controller('tuneSubmitController', ['$scope', '$http', tuneSubmitController]);
-
-
 
 

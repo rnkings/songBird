@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Tillana" rel="stylesheet">
   <title>Song Bird</title>
 </head>
-<body>
+<body class="textCenter">
 <nav>
   <div class="nav-wrapper">
     <ul class="left" id="nav-mobile">
@@ -40,10 +40,21 @@
       <img ng-src="{{songResult.artworkUrl60}}" alt="{{songResult.collectionName}}"/>
       <br>
       <p>{{songResult.trackName}}</p>
-      <p><a href="{{songResult.previewUrl}}">Preview</a></p>
+      <audio controls><source ng-src="{{songResult.previewUrl}}" type='audio/mpeg'></audio>
     </div>
   </div>
 </section>
+<!-- <section>
+  <ul class="pagination" ng-controller="">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="#!">1</a></li>
+    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="#!">3</a></li>
+    <li class="waves-effect"><a href="#!">4</a></li>
+    <li class="waves-effect"><a href="#!">5</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+</section> -->
 <!-- <div>
   <p> {{errors}} </p>
   <p>{{ data }}</p>
