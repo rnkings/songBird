@@ -132,4 +132,6 @@ input[type=search], textarea.materialize-textarea {
     text-align: center;
 }
 
-
+.pagination{
+	width:100%;
+}

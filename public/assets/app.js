@@ -7,13 +7,88 @@ app.config(function($sceProvider) {
 	$sceProvider.enabled(false);
 });
 
-var tuneSubmitController = function($scope, $http){
+//service states that you are using DataService?  Which allows you to store data and
+//have access to the scope in the other controller?
+app.service('PlaylistService', ['$http', function ($http) {
+	this.songs = [];
+
+	this.getSongs = function () {
+		return this.songs;
+	}
+
+	//methods
+	this.loadSongs = function () {
+		//Storing scope as a variable called 'self'
+		var self = this;
+		$http({
+			method: 'GET',
+			url: '/playlist'
+		}).then(function (response) {
+			console.log(response.data);
+			self.songs = response.data;
+		}).catch(function (err) {
+			console.error(err);
+		});
+	};
+
+	this.addSong = function (song) {
+		console.log(song);
+		$http({
+			method: 'POST',
+			url: '/playlist/add',
+			data: {
+				song: song
+			}
+		}).catch(function (err) {
+			console.error(err);
+		});
+
+		var playlist = this.songs;
+		var found = false;
+		for (var i = 0; i < playlist.length; i++) {
+			var item = playlist[i];
+			if (item.trackId == song.trackId) {
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			playlist.push(song);
+		}
+		console.log(this.songs);
+	};
+
+	this.deleteSong = function (song) {
+		$http({
+			method: 'POST',
+			url: '/playlist/delete',
+			data: {
+				song: song
+			}
+		}).catch(function (err) {
+			console.error(err);
+		});
+		
+		var playlist = this.songs;
+		for (var i = 0; i < playlist.length; i++) {
+			var item = playlist[i];
+			if (item.trackId == song.trackId) {
+				playlist.splice(i, 1);
+				break;
+			}
+		}
+	};
+}]);
+
+var tuneSubmitController = function($scope, $http, PlaylistService){
 	$scope.songResults = [];
 	$scope.currentPage = 1;
 	$scope.perPage = 5;
 
 	var onResultsReturned = function(response){
 		$scope.data = response.data;
+		console.log(JSON.stringify($scope.data.results));
 		$scope.songResults = response.data.results;
 	}
 
@@ -74,17 +149,42 @@ var tuneSubmitController = function($scope, $http){
 	$scope.previousPage = function () {
 		$scope.changePage($scope.currentPage - 1);
 	};
+
+	//Playlist methods
+	$scope.addToPlaylist = function (song) {
+		PlaylistService.addSong(song);
+	};
 };
 
-app.controller('tuneSubmitController', ['$scope', '$http', tuneSubmitController]);
+//this controller is down here because if it was on top something would not be accessible?
+//how is it connected to everything on top?
+app.controller('tuneSubmitController', ['$scope', '$http', 'PlaylistService', tuneSubmitController]);
 
 
-//Pagination
+//adding and subtracting a song
 
+app.controller('playlistController', ['PlaylistService', '$scope', function (PlaylistService, $scope) {
+ 	$scope.getSongs = function () {
+ 		return PlaylistService.getSongs();
+ 	};
 
+ 	$scope.getSongCount = function () {
+ 		return $scope.getSongs().length;
+ 	};
 
+ 	$scope.getDuration = function () {
+ 		var total = 0;
+ 		var songs = $scope.getSongs();
+ 		for (var i = 0; i < songs.length; i++) {
+ 			var song = songs[i];
+ 			var duration = song.trackTimeMillis / 1000;
+ 			total+= Number(duration);
+ 		}
 
+ 		return Math.round(total);
+ 	};
+}]);
 
-
-
-
+app.run(['PlaylistService', function (PlaylistService) {
+	PlaylistService.loadSongs();
+}]);
