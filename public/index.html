@@ -68,7 +68,7 @@
       <p>Artist Name: {{songResult.artistName}}</p>
       <p>Album Name: {{songResult.collectionName}}</p>
       <audio controls><source ng-src="{{songResult.previewUrl}}" type='audio/mpeg'></audio>
-      <button>Remove from Playlist</button>
+      <button ng-click="deleteFromPlaylist(songResult)">Remove from Playlist</button>
     </div>
 </section>
 <!-- footer starts here -->

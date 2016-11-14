@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-var express = require("express");
+var express = require('express');
+var bodyParser = require('body-parser');
 var fs = require('fs');
 var app = express();
-var bodyParser = require('body-parser');
 
 // ROOT DIRECTORY
 app.use('/', express.static(__dirname + '/public'));
@@ -15,11 +15,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 var readPlaylist = function () {
-	return JSON.parse(fs.readFileSync('playlist.json', 'utf8'));
+	return JSON.parse(fs.readFileSync(__dirname + '/playlist.json', 'utf8'));
 };
 
 var writePlaylist = function (data) {
-	fs.writeFileSync('playlist.json', JSON.stringify(data));
+	fs.writeFileSync(__dirname + '/playlist.json', JSON.stringify(data));
 };
 
 //Playlist routes

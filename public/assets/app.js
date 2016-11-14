@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var app = angular.module('songBird', []); 
 
@@ -14,7 +14,7 @@ app.service('PlaylistService', ['$http', function ($http) {
 
 	this.getSongs = function () {
 		return this.songs;
-	}
+	};
 
 	//methods
 	this.loadSongs = function () {
@@ -81,20 +81,21 @@ app.service('PlaylistService', ['$http', function ($http) {
 	};
 }]);
 
-var tuneSubmitController = function($scope, $http, PlaylistService){
+//this controller is down here because if it was on top something would not be accessible?
+//how is it connected to everything on top?
+app.controller('tuneSubmitController', ['$scope', '$http', 'PlaylistService', function($scope, $http, PlaylistService){
 	$scope.songResults = [];
 	$scope.currentPage = 1;
 	$scope.perPage = 5;
 
 	var onResultsReturned = function(response){
 		$scope.data = response.data;
-		console.log(JSON.stringify($scope.data.results));
 		$scope.songResults = response.data.results;
-	}
+	};
 
 	var onError = function(errors){
 		$scope.error = errors;
-	}
+	};
 
 	$scope.searchArtist = function(artist){
 	  $http.jsonp('http://itunes.apple.com/search', {
@@ -102,8 +103,8 @@ var tuneSubmitController = function($scope, $http, PlaylistService){
 	  		'callback': 'JSON_CALLBACK',
 	  		'term': artist
 	  	}
-	  }).then(onResultsReturned, onError)
-	}
+	  }).then(onResultsReturned).catch(onError);
+	};
 
 	/**
 	 * Pagination Methods
@@ -129,10 +130,18 @@ var tuneSubmitController = function($scope, $http, PlaylistService){
 		//We grab a start index, based on the current page and items per page.
 		//i.e. currentPage is 1, this turns into (0 * 5), which is zero
 		var start = ($scope.currentPage - 1) * $scope.perPage;
+
 		//We then add the number of items per page to get end point
 		var end = start + $scope.perPage;
-		//We use slice to grab items from start to end
-		return $scope.songResults.slice(start, end);
+
+		//We grab the items out of our results
+		//And return them
+		var songsToShow = [];
+		for (var i = start; i < end; i++) {
+			var song = $scope.songResults[i];
+			songsToShow.push(song);
+		}
+		return songsToShow;
 	};
 
 	//Changes our page to a new page.
@@ -154,11 +163,8 @@ var tuneSubmitController = function($scope, $http, PlaylistService){
 	$scope.addToPlaylist = function (song) {
 		PlaylistService.addSong(song);
 	};
-};
 
-//this controller is down here because if it was on top something would not be accessible?
-//how is it connected to everything on top?
-app.controller('tuneSubmitController', ['$scope', '$http', 'PlaylistService', tuneSubmitController]);
+}]);
 
 
 //adding and subtracting a song
@@ -171,6 +177,10 @@ app.controller('playlistController', ['PlaylistService', '$scope', function (Pla
  	$scope.getSongCount = function () {
  		return $scope.getSongs().length;
  	};
+
+ 	$scope.deleteFromPlaylist = function (song) {
+		PlaylistService.deleteSong(song);
+	};
 
  	$scope.getDuration = function () {
  		var total = 0;
