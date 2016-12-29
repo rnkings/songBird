@@ -5,40 +5,39 @@
     max-width:100%;
     min-height: 450px;
     background-size: cover;
-    margin-top: -35px;
+    margin-top: -33px;
 }
 
-.featherIcon{
+.featherIcon {
 	margin-left:25px;
 	vertical-align: middle;
 	border:0;
 }
 
-.songBirdNavTextSize{
+.songBirdNavTextSize {
 	font-size: 23px;
 }
 
-.shadow{
+.shadow {
 	text-shadow: -1px 2px 12px #000;
 	color: white;
 }
 
-.songBirdBannerSize{
+.songBirdBannerSize {
 	font-size:60px;
 }
 
-.songBirdTextPadding{
+.songBirdTextPadding {
 	padding-top:150px;
-
 }
 
-.pageFooter{
+.pageFooter {
 	background-color: #6559a2; 
 	margin-top: 20px;
     padding-top: 20px;
 }
 
-#footer{
+#footer {
     height: 50px;
     line-height: 50px;
     text-align:center;
@@ -47,7 +46,7 @@
     width:100%;
 }
 
-.footerSource{
+.footerSource {
 	font-size:14px;
 	color:white;
 	margin-left:800px;
@@ -56,27 +55,27 @@
 	opacity: .4;
 }
 
-nav{
+nav {
 	background-color: #6559a2; 
 	z-index: 100;
 }
 
-.nav>li>a{
+.nav>li>a {
     list-style: none;
     margin-right:200px;
 }
 
-html{
+html {
 	font-family: 'Tillana', cursive;
 }
 
-#centerAndSpace{
+#centerAndSpace {
 	width:100%;
     text-align: center;
     margin:0 auto;
 }
 
-#searchSpace{
+#searchSpace {
 	margin-bottom:30px;
 }
 
@@ -110,11 +109,11 @@ input[type=search], textarea.materialize-textarea {
     text-align: center;
 }
 
-.pagination{
+.pagination {
 	width:100%;
 }
 
-input[type=search]:focus:not([readonly]){
+input[type=search]:focus:not([readonly]) {
 	border-bottom: 1px solid #6559a2;
     box-shadow: 0 1px 0 0 #6559a2;
 }
