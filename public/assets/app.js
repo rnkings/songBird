@@ -7,8 +7,7 @@ app.config(function($sceProvider) {
 	$sceProvider.enabled(false);
 });
 
-//service states that you are using DataService?  Which allows you to store data and
-//have access to the scope in the other controller?
+
 app.service('PlaylistService', ['$http', function ($http) {
 	this.songs = [];
 
@@ -81,20 +80,18 @@ app.service('PlaylistService', ['$http', function ($http) {
 	};
 }]);
 
-//this controller is down here because if it was on top something would not be accessible?
-//how is it connected to everything on top?
+
 app.controller('tuneSubmitController', ['$scope', '$http', 'PlaylistService', function($scope, $http, PlaylistService){
 	$scope.songResults = [];
 	$scope.currentPage = 1;
 	$scope.perPage = 5;
 
 	var onResultsReturned = function(response){
-		$scope.data = response.data;
 		$scope.songResults = response.data.results;
 	};
 
 	var onError = function(errors){
-		$scope.error = errors;
+		console.log(errors);
 	};
 
 	$scope.searchArtist = function(artist){

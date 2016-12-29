@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="songBird">
 <head>
-  <!-- Compiled and minified CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" rel="stylesheet">
-  <!-- Compiled and minified JavaScript -->
   <link href="assets/css/styles.css" media="screen,projection" rel="stylesheet" type="text/css">
-  <!--   Icon made by Roundicons from http://www.flaticon.com/free-icon/feather_187834  -->
   <link rel="icon" href="assets/img/feather.png"/>
   <link href="https://fonts.googleapis.com/css?family=Tillana" rel="stylesheet">
   <title>Song Bird</title>
@@ -14,20 +11,18 @@
 <nav>
   <div class="nav-wrapper">
     <ul class="left" id="nav-mobile">
-      <!--   Icon made by Roundicons from http://www.flaticon.com/free-icon/feather_187834  -->
       <li><img alt="Song Bird Logo" class="featherIcon" src="assets/img/feather.png" title="Song Bird Logo"></li>
       <li>
-        <a class="songBirdNavTextSize" href="">Song Bird</a>
+        <a class="songBirdNavTextSize">Song Bird</a>
       </li>
     </ul>
   </div>
-</nav><!-- Banner Start -->
+</nav>
 <div id="banner">
   <h1 class="center shadow songBirdTextPadding songBirdBannerSize">Song Bird</h1>
   <br>
   <h5 class="center shadow">Taking music to new heights</h5>
-</div><!-- Banner End -->
-<!-- A search bar should be here -->
+</div>
 <section class="jumbotron" ng-controller="tuneSubmitController">
   <form name="submit" ng-submit="searchArtist(artist)" class="center" id="centerAndSpace">
     <div id="searchSpace">
@@ -36,13 +31,17 @@
     </div>
   </form>
   <div ng-show="songResults.length > 0" class="pagination">
-    <button ng-disabled="currentPage == 1" ng-click="previousPage()">Previous Page</button>
     <ul>
+      <li>
+        <button class= "moveLeft" ng-disabled="currentPage == 1" ng-click="previousPage()">Previous Page</button>
+      </li>
       <li ng-repeat="number in getPageArray()">
         <button ng-disabled="number == currentPage" ng-click="changePage(number)">{{number}}</button>
       </li>
+      <li>
+        <button class="moveRight" ng-disabled="currentPage >= getMaxPage()" ng-click="nextPage()">Next Page</button>
+      </li>
     </ul>
-    <button ng-disabled="currentPage >= getMaxPage()" ng-click="nextPage()">Next Page</button>
     <div ng-repeat="songResult in getPageData()">
       <hr>
       <img ng-src="{{songResult.artworkUrl60}}" alt="{{songResult.collectionName}}"/>
@@ -71,14 +70,11 @@
       <button ng-click="deleteFromPlaylist(songResult)">Remove from Playlist</button>
     </div>
 </section>
-<!-- footer starts here -->
 <footer class="pageFooter">
   <div class="container" id="footer">
     © 2016 Copyright Rose Koenings
   </div>
   <div class="footerSource">
-    favicon/banner icon: Icon made by Roundicons from http://www.flaticon.com/free-icon/feather_187834
-    <br>
     Banner pic: by Breno machado https://unsplash.com/search/birds?photo=GBO4_7WymqY
     <br>
     Materalize css was used for this app
