@@ -14,8 +14,42 @@
 	border:0;
 }
 
+@media (min-width: 2560px) {
+	.featherIcon {
+		height: 80px;
+		padding-top: 10px;
+	}
+}
+
+@media (max-width: 1440px) {
+	.featherIcon {
+		height: 40px;
+	}
+}
+
 .songBirdNavTextSize {
 	font-size: 23px;
+}
+
+@media (min-width: 2560px) {
+	.songBirdNavTextSize {
+    	font-size: 50px;
+    	padding-top: 15px;
+	}
+}
+
+@media (max-width: 1440px) {
+	.songBirdNavTextSize {
+    	font-size: 30px;
+    	padding-top: 1px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.songBirdNavTextSize {
+    	font-size: 25px;
+    	margin-bottom: 10px;
+	}
 }
 
 .shadow {
@@ -23,12 +57,29 @@
 	color: white;
 }
 
+@media (min-width: 2560px) {
+	.shadow {
+    	font-size: 60px;
+	}
+}
+
 .songBirdBannerSize {
 	font-size:60px;
 }
 
+@media (min-width: 2560px) {
+	.songBirdBannerSize {
+    	font-size: 100px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.songBirdBannerSize {
+    	font-size: 50px;
+	}
+}
 .songBirdTextPadding {
-	padding-top:190px;
+	padding-top: 190px;
 }
 
 .pageFooter {
@@ -58,6 +109,18 @@
 nav {
 	background-color: #6559a2; 
 	z-index: 100;
+}
+
+@media (min-width: 2560px) {
+	nav {
+    	height: 100px;
+	}
+}
+
+@media (max-width: 1024px) {
+	nav {
+    	height: 65px;
+	}
 }
 
 .nav>li>a {
@@ -127,7 +190,7 @@ input[type=search]:focus:not([readonly]) {
 
 @media (max-width: 2560px) {
     #banner {
-        min-height:650px;
+        min-height:800px;
     }
 }
 
@@ -139,31 +202,25 @@ input[type=search]:focus:not([readonly]) {
 
 @media (max-width: 1024px) {
     #banner {
-        min-height:300px;
-    }
-}
-
-@media (max-width: 768px) {
-    #banner {
-        min-height:100px;
+        min-height: 400px;
     }
 }
 
 @media (max-width: 2560px) {
 .songBirdTextPadding {
-    padding-top: 250px;
+    padding-top: 300px;
 	}
 }
 
 @media (max-width: 1440px) {
 .songBirdTextPadding {
-    padding-top: 170px;
+    padding-top: 180px;
 	}
 }
 
 @media (max-width: 1024px) {
 .songBirdTextPadding {
-    padding-top: 80px;
+    padding-top: 120px;
 	}
 }
 
